@@ -8,9 +8,9 @@ import java.util.UUID;
 
 public interface CompanyDAO {
 
-	int insertCompany(UUID id, Company company);
+	Company insertCompany(UUID id, Company company);
 
-	default int insertCompany(Company person) {
+	default Company insertCompany(Company person) {
 	  UUID id = UUID.randomUUID();
 	  return insertCompany(id, person);
 	}
@@ -19,7 +19,7 @@ public interface CompanyDAO {
 
 	Optional<Company> selectCompanyById(UUID id);
 
-	int deleteCompany(UUID id);
+	void deleteCompany(UUID id);
 
-	int updateCompany(UUID id, Company company);
+	Company updateCompany(UUID id, Company company);
 }

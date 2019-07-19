@@ -16,14 +16,13 @@ public class CompanyDataAccessService implements CompanyDAO {
   private CompanyRepository companyRepository;
 
   @Override
-  public int insertCompany(UUID id, Company company) {
-	companyRepository.save(new Company(id,
+  public Company insertCompany(UUID id, Company company) {
+	return companyRepository.save(new Company(id,
 			company.getAnnualRevenue(),
 			company.getBillingCity(),
 			company.getBillingCounty(),
 			company.getCustomerPriority(),
 			company.getCompanyId()));
-	return 1;
   }
 
   @Override
@@ -37,20 +36,18 @@ public class CompanyDataAccessService implements CompanyDAO {
   }
 
   @Override
-  public int deleteCompany(UUID id) {
-	companyRepository.deleteById(id);
-	return 1;
+  public void deleteCompany(UUID id) {
+    companyRepository.deleteById(id);
   }
 
   @Override
-  public int updateCompany(UUID id, Company companyUpdate) {
+  public Company updateCompany(UUID id, Company companyUpdate) {
     Company companyToUpdate = companyRepository.getOne(id);
     companyToUpdate.setAnnualRevenue(companyUpdate.getAnnualRevenue());
     companyToUpdate.setBillingCity(companyUpdate.getBillingCity());
     companyToUpdate.setBillingCounty(companyUpdate.getBillingCounty());
     companyToUpdate.setCustomerPriority(companyUpdate.getCustomerPriority());
     companyToUpdate.setCompanyId(companyUpdate.getCompanyId());
-    companyRepository.save(companyToUpdate);
-    return 1;
+    return companyRepository.save(companyToUpdate);
   }
 }

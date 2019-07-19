@@ -20,7 +20,7 @@ public class CompanyService {
 	this.companyDAO = companyDAO;
   }
 
-  public int addCompany(Company company) {
+  public Company addCompany(Company company) {
 	return companyDAO.insertCompany(company);
   }
 
@@ -33,10 +33,10 @@ public class CompanyService {
   }
 
   public void deleteCompanyById(UUID id) {
-	companyDAO.deleteCompany(id);
+    companyDAO.deleteCompany(id);
   }
 
-  public void updateCompanyById(UUID id, Company company) {
-    companyDAO.updateCompany(id, company);
+  public Company updateCompanyById(UUID id, Company company) {
+    return companyDAO.updateCompany(id, company);
   }
 }
