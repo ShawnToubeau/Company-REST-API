@@ -18,4 +18,8 @@ public interface CompanyDAO {
 	List<Company> selectAllCompanies();
 
 	Optional<Company> selectCompanyById(UUID id);
+
+	int deleteCompany(UUID id);
+
+	int updateCompany(UUID id, Company company);
 }

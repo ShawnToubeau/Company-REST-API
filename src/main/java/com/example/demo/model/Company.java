@@ -11,59 +11,87 @@ public class Company {
 
   @Id
   @GeneratedValue
-  private final UUID id;
+  private UUID id;
 
   @NotBlank
-  private final String annualRevenue;
+  private String annualRevenue;
 
   @NotBlank
-  private final String billingCity;
+  private String billingCity;
 
   @NotBlank
-  private final String billingCounty;
+  private String billingCounty;
 
   @NotBlank
-  private final String customerPriority;
+  private String customerPriority;
 
   @NotBlank
-  private final String companyId;
+  private String companyId;
+
+  // Default no arg constructor for JPA repository
+  public Company() {
+  }
 
   public Company(@JsonProperty("id") UUID id,
-				@JsonProperty("annualrevenue") String annualRevenue,
-				@JsonProperty("billingcity") String billingCity,
-				@JsonProperty("billingcountry") String billingCounty,
-				@JsonProperty("customerpriority") String customerPriority,
-				@JsonProperty("companyId") String companyId) {
+				 @JsonProperty("annualrevenue") String annualRevenue,
+				 @JsonProperty("billingcity") String billingCity,
+				 @JsonProperty("billingcountry") String billingCounty,
+				 @JsonProperty("customerpriority") String customerPriority,
+				 @JsonProperty("companyId") String companyId) {
 
-    this.id = id;
-    this.annualRevenue = annualRevenue;
-    this.billingCity = billingCity;
-    this.billingCounty = billingCounty;
-    this.customerPriority = customerPriority;
-    this.companyId = companyId;
+	this.id = id;
+	this.annualRevenue = annualRevenue;
+	this.billingCity = billingCity;
+	this.billingCounty = billingCounty;
+	this.customerPriority = customerPriority;
+	this.companyId = companyId;
   }
 
   public UUID getId() {
 	return id;
   }
 
+  public void setId(UUID id) {
+	this.id = id;
+  }
+
   public String getAnnualRevenue() {
 	return annualRevenue;
+  }
+
+  public void setAnnualRevenue(String annualRevenue) {
+	this.annualRevenue = annualRevenue;
   }
 
   public String getBillingCity() {
 	return billingCity;
   }
 
+  public void setBillingCity(String billingCity) {
+	this.billingCity = billingCity;
+  }
+
   public String getBillingCounty() {
 	return billingCounty;
+  }
+
+  public void setBillingCounty(String billingCounty) {
+	this.billingCounty = billingCounty;
   }
 
   public String getCustomerPriority() {
 	return customerPriority;
   }
 
+  public void setCustomerPriority(String customerPriority) {
+	this.customerPriority = customerPriority;
+  }
+
   public String getCompanyId() {
 	return companyId;
+  }
+
+  public void setCompanyId(String companyId) {
+	this.companyId = companyId;
   }
 }

@@ -31,4 +31,12 @@ public class CompanyService {
   public Optional<Company> getCompanyById(UUID id) {
 	return companyDAO.selectCompanyById(id);
   }
+
+  public void deleteCompanyById(UUID id) {
+	companyDAO.deleteCompany(id);
+  }
+
+  public void updateCompanyById(UUID id, Company company) {
+    companyDAO.updateCompany(id, company);
+  }
 }

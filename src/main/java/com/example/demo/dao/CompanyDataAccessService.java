@@ -10,30 +10,47 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository("companyDAO")
-public class CompanyDataAccessService implements CompanyDAO{
+public class CompanyDataAccessService implements CompanyDAO {
 
   @Autowired
   private CompanyRepository companyRepository;
 
   @Override
   public int insertCompany(UUID id, Company company) {
-    companyRepository.save(company);
-//	companyRepository.save(new Company(id, // This doesn't seem to work? Throws 'no default constructor for entity'
-//			company.getAnnualRevenue(),
-//			company.getBillingCity(),
-//			company.getBillingCounty(),
-//			company.getCustomerPriority(),
-//			company.getCompanyId()));
+	companyRepository.save(new Company(id,
+			company.getAnnualRevenue(),
+			company.getBillingCity(),
+			company.getBillingCounty(),
+			company.getCustomerPriority(),
+			company.getCompanyId()));
 	return 1;
   }
 
   @Override
   public List<Company> selectAllCompanies() {
-	return companyRepository.findAll(); // Seems to work fine but once I add an entry I get 'no default constructor for entity'
+	return companyRepository.findAll();
   }
 
   @Override
   public Optional<Company> selectCompanyById(UUID id) {
-    return companyRepository.findById(id);
+	return companyRepository.findById(id);
+  }
+
+  @Override
+  public int deleteCompany(UUID id) {
+	companyRepository.deleteById(id);
+	return 1;
+  }
+
+  @Override
+  public int updateCompany(UUID id, Company companyUpdate) {
+    Company companyToUpdate = companyRepository.getOne(id);
+    companyToUpdate.setAnnualRevenue(companyUpdate.getAnnualRevenue());
+    companyToUpdate.setBillingCity(companyUpdate.getBillingCity());
+    companyToUpdate.setBillingCounty(companyUpdate.getBillingCounty());
+    companyToUpdate.setCustomerPriority(companyUpdate.getCustomerPriority());
+    companyToUpdate.setCompanyId(companyUpdate.getCompanyId());
+    companyRepository.save(companyToUpdate);
+    return 1;
   }
 }
