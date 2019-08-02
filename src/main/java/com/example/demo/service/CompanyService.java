@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -20,8 +21,12 @@ public class CompanyService {
 	this.companyDAO = companyDAO;
   }
 
-  public Company addCompany(Company company) {
+  public String addCompany(Company company) {
 	return companyDAO.insertCompany(company);
+  }
+
+  public String loadCompanyCSV(String filepath) throws IOException {
+    return companyDAO.loadCompanyCSV(filepath);
   }
 
   public List<Company> getAllCompanies() {
@@ -32,11 +37,11 @@ public class CompanyService {
 	return companyDAO.selectCompanyById(id);
   }
 
-  public void deleteCompanyById(UUID id) {
-    companyDAO.deleteCompany(id);
+  public String deleteCompanyById(UUID id) {
+    return companyDAO.deleteCompany(id);
   }
 
-  public Company updateCompanyById(UUID id, Company company) {
+  public String updateCompanyById(UUID id, Company company) {
     return companyDAO.updateCompany(id, company);
   }
 }

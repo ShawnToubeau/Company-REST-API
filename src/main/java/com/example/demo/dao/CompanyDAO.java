@@ -2,24 +2,27 @@ package com.example.demo.dao;
 
 import com.example.demo.model.Company;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface CompanyDAO {
 
-	Company insertCompany(UUID id, Company company);
+	String insertCompany(UUID id, Company company);
 
-	default Company insertCompany(Company person) {
+	default String insertCompany(Company company) {
 	  UUID id = UUID.randomUUID();
-	  return insertCompany(id, person);
+	  return insertCompany(id, company);
 	}
+
+  	String loadCompanyCSV(String filePath) throws IOException;
 
 	List<Company> selectAllCompanies();
 
 	Optional<Company> selectCompanyById(UUID id);
 
-	void deleteCompany(UUID id);
+	String deleteCompany(UUID id);
 
-	Company updateCompany(UUID id, Company company);
+	String updateCompany(UUID id, Company company);
 }

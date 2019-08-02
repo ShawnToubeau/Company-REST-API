@@ -2,13 +2,17 @@ package com.example.demo.api;
 
 import com.example.demo.model.Company;
 import com.example.demo.service.CompanyService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Description;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping("api/v1/company")
+@Api(value = "contacts", description = "contacts")
+@RequestMapping("api/v1/companies")
 @RestController
 public class CompanyController {
 
@@ -19,29 +23,35 @@ public class CompanyController {
 	this.companyService = companyService;
   }
 
-  @PostMapping
-  public void addCompany(@RequestBody Company company) {
-	companyService.addCompany(company);
+  @PostMapping("/add")
+  @Description("Hellllooo")
+  public String addCompany(@RequestBody Company company) {
+	return companyService.addCompany(company);
   }
 
-  @GetMapping
+  @PostMapping("/readcsv")
+  public String loadCompanyCSV(@RequestBody String filepath) throws IOException {
+    return (companyService.loadCompanyCSV(filepath));
+  }
+
+  @GetMapping("/getall")
   public List<Company> getAllCompanies() {
 	return companyService.getAllCompanies();
   }
 
-  @GetMapping(path = "{id}")
+  @GetMapping(path = "/get/{id}")
   public Company getCompanyById(@PathVariable("id") UUID id) {
 	return companyService.getCompanyById(id)
 			.orElse(null);
   }
 
-  @DeleteMapping(path = "{id}")
-  public void deleteCompanyById(@PathVariable("id") UUID id) {
-    companyService.deleteCompanyById(id);
+  @DeleteMapping(path = "/delete/{id}")
+  public String deleteCompanyById(@PathVariable("id") UUID id) {
+    return companyService.deleteCompanyById(id);
   }
 
-  @PutMapping(path = "{id}")
-  public Company updateCompanyById(@PathVariable("id") UUID id, @RequestBody Company company) {
+  @PutMapping(path = "update/{id}")
+  public String updateCompanyById(@PathVariable("id") UUID id, @RequestBody Company company) {
     return companyService.updateCompanyById(id, company);
   }
 }

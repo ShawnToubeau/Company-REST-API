@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -93,5 +94,35 @@ public class Company {
 
   public void setCompanyId(String companyId) {
 	this.companyId = companyId;
+  }
+
+  @Override
+  public String toString() {
+	return "Company{" +
+			"id=" + id +
+			", annualRevenue='" + annualRevenue + '\'' +
+			", billingCity='" + billingCity + '\'' +
+			", billingCounty='" + billingCounty + '\'' +
+			", customerPriority='" + customerPriority + '\'' +
+			", companyId='" + companyId + '\'' +
+			'}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+	if (this == o) return true;
+	if (o == null || getClass() != o.getClass()) return false;
+	Company company = (Company) o;
+	return Objects.equals(id, company.id) &&
+			Objects.equals(annualRevenue, company.annualRevenue) &&
+			Objects.equals(billingCity, company.billingCity) &&
+			Objects.equals(billingCounty, company.billingCounty) &&
+			Objects.equals(customerPriority, company.customerPriority) &&
+			Objects.equals(companyId, company.companyId);
+  }
+
+  @Override
+  public int hashCode() {
+	return Objects.hash(id, annualRevenue, billingCity, billingCounty, customerPriority, companyId);
   }
 }
