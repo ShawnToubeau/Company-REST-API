@@ -23,7 +23,7 @@ public class CompanyDataAccessService implements CompanyDAO {
 	Company newCompany = new Company(id,
 			company.getAnnualRevenue(),
 			company.getBillingCity(),
-			company.getBillingCounty(),
+			company.getBillingCountry(),
 			company.getCustomerPriority(),
 			company.getCompanyId());
 	companyRepository.save(newCompany);
@@ -44,7 +44,7 @@ public class CompanyDataAccessService implements CompanyDAO {
 		Company company = new Company();
 		company.setAnnualRevenue(line[0]);
 		company.setBillingCity(line[1]);
-		company.setBillingCounty(line[2]);
+		company.setBillingCountry(line[2]);
 		company.setCustomerPriority(line[3]);
 		company.setCompanyId(line[4]);
 
@@ -81,7 +81,7 @@ public class CompanyDataAccessService implements CompanyDAO {
 	Company companyToUpdate = companyRepository.getOne(id);
 	companyToUpdate.setAnnualRevenue(companyUpdate.getAnnualRevenue());
 	companyToUpdate.setBillingCity(companyUpdate.getBillingCity());
-	companyToUpdate.setBillingCounty(companyUpdate.getBillingCounty());
+	companyToUpdate.setBillingCountry(companyUpdate.getBillingCountry());
 	companyToUpdate.setCustomerPriority(companyUpdate.getCustomerPriority());
 	companyToUpdate.setCompanyId(companyUpdate.getCompanyId());
 	companyRepository.save(companyToUpdate);

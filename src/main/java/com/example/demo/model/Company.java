@@ -21,7 +21,7 @@ public class Company {
   private String billingCity;
 
   @NotBlank
-  private String billingCounty;
+  private String billingCountry;
 
   @NotBlank
   private String customerPriority;
@@ -36,14 +36,14 @@ public class Company {
   public Company(@JsonProperty("id") UUID id,
 				 @JsonProperty("annualrevenue") String annualRevenue,
 				 @JsonProperty("billingcity") String billingCity,
-				 @JsonProperty("billingcountry") String billingCounty,
+				 @JsonProperty("billingcountry") String billingCountry,
 				 @JsonProperty("customerpriority") String customerPriority,
 				 @JsonProperty("companyId") String companyId) {
 
 	this.id = id;
 	this.annualRevenue = annualRevenue;
 	this.billingCity = billingCity;
-	this.billingCounty = billingCounty;
+	this.billingCountry = billingCountry;
 	this.customerPriority = customerPriority;
 	this.companyId = companyId;
   }
@@ -72,12 +72,12 @@ public class Company {
 	this.billingCity = billingCity;
   }
 
-  public String getBillingCounty() {
-	return billingCounty;
+  public String getBillingCountry() {
+	return billingCountry;
   }
 
-  public void setBillingCounty(String billingCounty) {
-	this.billingCounty = billingCounty;
+  public void setBillingCountry(String billingCounty) {
+	this.billingCountry = billingCounty;
   }
 
   public String getCustomerPriority() {
@@ -102,7 +102,7 @@ public class Company {
 			"id=" + id +
 			", annualRevenue='" + annualRevenue + '\'' +
 			", billingCity='" + billingCity + '\'' +
-			", billingCounty='" + billingCounty + '\'' +
+			", billingCountry='" + billingCountry + '\'' +
 			", customerPriority='" + customerPriority + '\'' +
 			", companyId='" + companyId + '\'' +
 			'}';
@@ -116,13 +116,13 @@ public class Company {
 	return Objects.equals(id, company.id) &&
 			Objects.equals(annualRevenue, company.annualRevenue) &&
 			Objects.equals(billingCity, company.billingCity) &&
-			Objects.equals(billingCounty, company.billingCounty) &&
+			Objects.equals(billingCountry, company.billingCountry) &&
 			Objects.equals(customerPriority, company.customerPriority) &&
 			Objects.equals(companyId, company.companyId);
   }
 
   @Override
   public int hashCode() {
-	return Objects.hash(id, annualRevenue, billingCity, billingCounty, customerPriority, companyId);
+	return Objects.hash(id, annualRevenue, billingCity, billingCountry, customerPriority, companyId);
   }
 }
